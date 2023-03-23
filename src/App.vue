@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <Header title="Task tracker" />
-    <AddTask />
+    <Header @show-hide-form="toggleShowForm" title="Task tracker" />
+    <div v-if="showHide">
+      <AddTask @add-task="addTask" />
+    </div>
     <Tasks
       @toggle-reminder="toggleReminder"
       @delete-task="deleteTask"
@@ -25,11 +27,11 @@ export default {
   data() {
     return {
       tasks: [],
+      showHide: false,
     };
   },
   methods: {
     deleteTask(id) {
-      console.log("from App.vue", id);
       this.tasks = this.tasks.filter((t) => t.id !== id);
     },
     toggleReminder(id) {
@@ -42,6 +44,14 @@ export default {
         }
         return t;
       });
+    },
+    addTask(task) {
+      const id = Math.floor(Math.random() * 10000) + 1;
+      const newTask = { id, ...task };
+      this.tasks = [...this.tasks, newTask];
+    },
+    toggleShowForm() {
+      this.showHide = !this.showHide;
     },
   },
   created() {
