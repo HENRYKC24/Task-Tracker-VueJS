@@ -1,6 +1,10 @@
 <template>
   <div class="container">
-    <Header :formHidden="formHidden" @show-hide-form="toggleShowForm" title="Task tracker" />
+    <Header
+      :formHidden="formHidden"
+      @show-hide-form="toggleShowForm"
+      title="Task tracker"
+    />
     <div v-if="!formHidden">
       <AddTask @add-task="addTask" />
     </div>
@@ -31,50 +35,68 @@ export default {
     };
   },
   methods: {
-    deleteTask(id) {
-      this.tasks = this.tasks.filter((t) => t.id !== id);
-    },
-    toggleReminder(id) {
-      this.tasks = this.tasks.map((t) => {
-        if (t.id === id) {
-          return {
-            ...t,
-            reminder: !t.reminder,
-          };
-        }
-        return t;
+    async deleteTask(id) {
+      const res = await fetch(`api/tasks/${id}`, {
+        method: "DELETE",
       });
+      res.status === 200
+        ? (this.tasks = this.tasks.filter((t) => t.id !== id))
+        : alert("Error deleting task");
     },
-    addTask(task) {
-      const id = Math.floor(Math.random() * 10000) + 1;
-      const newTask = { id, ...task };
+
+    async toggleReminder(id) {
+      const task = await this.fetchOneTask(id);
+      const res = await fetch(`api/tasks/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ ...task, reminder: !task.reminder }),
+      });
+      res.status === 200
+        ? (this.tasks = this.tasks.map((t) => {
+            if (t.id === id) {
+              return {
+                ...t,
+                reminder: !t.reminder,
+              };
+            }
+            return t;
+          }))
+        : alert("Error updating task");
+    },
+
+    async addTask() {
+      const res = await fetch("api/tasks", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(task),
+      });
+      const newTask = await res.json();
       this.tasks = [...this.tasks, newTask];
     },
+
     toggleShowForm() {
       this.formHidden = !this.formHidden;
     },
+
+    async fetchTasks() {
+      const res = await fetch("api/tasks");
+      const data = await res.json();
+      return data;
+    },
+
+    async fetchOneTask(id) {
+      const res = await fetch(`api/tasks/${id}`);
+      const data = await res.json();
+      return data;
+    },
   },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "Doctors Appointments",
-        day: "March 1 at 2:30pm",
-        reminder: true,
-      },
-      {
-        id: 2,
-        text: "Meeting at School",
-        day: "March 3 at 1:30pm",
-        reminder: true,
-      },
-      {
-        id: 3,
-        text: "Food Shopping",
-        day: "March 3 at 11:00am",
-        reminder: false,
-      },
-    ];
+
+  async created() {
+    this.tasks = await this.fetchTasks();
   },
 };
 </script>
