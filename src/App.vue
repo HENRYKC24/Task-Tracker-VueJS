@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <Header @show-hide-form="toggleShowForm" title="Task tracker" />
-    <div v-if="showHide">
+    <Header :formHidden="formHidden" @show-hide-form="toggleShowForm" title="Task tracker" />
+    <div v-if="!formHidden">
       <AddTask @add-task="addTask" />
     </div>
     <Tasks
@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       tasks: [],
-      showHide: false,
+      formHidden: true,
     };
   },
   methods: {
@@ -51,7 +51,7 @@ export default {
       this.tasks = [...this.tasks, newTask];
     },
     toggleShowForm() {
-      this.showHide = !this.showHide;
+      this.formHidden = !this.formHidden;
     },
   },
   created() {

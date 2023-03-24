@@ -6,23 +6,20 @@
   export default {
     name: "Button",
     props: {
-      text: {
-        type: String,
-        default: 'Add',
-      },
-      color: {
-        type: String,
-        default: 'black',
-      }
+      text: String,
+      color: String,
+      formHidden: Boolean,
     },
     methods: {
       onClick() {
-        console.log('You clicked on the button');
+        // console.log('You clicked on the button');
       }
     }
   }
 </script>
 
 <style scoped>
-
+button {
+  width: 110px;
+}
 </style>
