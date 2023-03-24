@@ -2,7 +2,7 @@
   <header>
     <h1>{{ title }}</h1>
     <Button
-      @click="$emit('show-hide-form')"
+      @btn-click="$emit('show-hide-form')"
       :text="formHidden ? 'Add Task' : 'Close'"
       :formHidden="formHidden"
       :color="formHidden ? 'green' : 'red'"
