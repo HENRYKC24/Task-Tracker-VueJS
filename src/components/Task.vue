@@ -19,7 +19,6 @@ export default {
   },
   methods: {
     deleteTask(id) {
-      console.log("id", id);
       this.$emit("delete-task", id);
     },
   },
