@@ -1,22 +1,22 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "text": "Doctors Appointments",
-      "day": "March 1 at 2:30pm",
-      "reminder": false
+      "text": "Learn Firebase",
+      "day": "March 24 at 2:30am",
+      "reminder": true,
+      "id": 1
     },
     {
-      "id": 2,
-      "text": "Meeting at School",
-      "day": "March 3 at 1:30pm",
-      "reminder": true
+      "text": "Learn VueJS",
+      "day": "February 10 at 2:00am",
+      "reminder": true,
+      "id": 2
     },
     {
-      "id": 3,
-      "text": "Food Shopping",
-      "day": "March 3 at 11:00am",
-      "reminder": false
+      "text": "Learn Tailwind CSS",
+      "day": "March 24 at 2:30am",
+      "reminder": false,
+      "id": 3
     }
   ]
 }

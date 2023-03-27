@@ -2,6 +2,7 @@
   <header>
     <h1>{{ title }}</h1>
     <Button
+      v-show="shouldShowButton()"
       @btn-click="$emit('show-hide-form')"
       :text="formHidden ? 'Add Task' : 'Close'"
       :formHidden="formHidden"
@@ -20,6 +21,12 @@ export default {
   },
   components: {
     Button,
+  },
+  methods: {
+    shouldShowButton() {
+      console.log(this.$route.path);
+      return this.$route.path === "/home";
+    },
   },
 };
 </script>
