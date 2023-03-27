@@ -1,21 +1,23 @@
 <template>
-  <button @click="onClick()" :style="{backgroundColor: color}" class="btn">{{text}}</button>
+  <button @click="onClick()" :style="{ backgroundColor: color }" class="btn">
+    {{ text }}
+  </button>
 </template>
 
 <script>
-  export default {
-    name: "Button",
-    props: {
-      text: String,
-      color: String,
-      formHidden: Boolean,
+export default {
+  name: "Button",
+  props: {
+    text: String,
+    color: String,
+    formHidden: Boolean,
+  },
+  methods: {
+    onClick() {
+      this.$emit("btn-click");
     },
-    methods: {
-      onClick() {
-        // console.log('You clicked on the button');
-      }
-    }
-  }
+  },
+};
 </script>
 
 <style scoped>

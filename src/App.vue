@@ -1,80 +1,38 @@
 <template>
   <div class="container">
-    <Header :formHidden="formHidden" @show-hide-form="toggleShowForm" title="Task tracker" />
-    <div v-if="!formHidden">
-      <AddTask @add-task="addTask" />
-    </div>
-    <Tasks
-      @toggle-reminder="toggleReminder"
-      @delete-task="deleteTask"
-      :tasks="tasks"
+    <Header
+      :formHidden="formHidden"
+      @show-hide-form="toggleShowForm"
+      title="Task tracker"
     />
+    <router-view :formHidden="formHidden"></router-view>
+    <Footer />
   </div>
 </template>
 
 <script>
 import Header from "./components/Header";
-import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
+import Tasks from "./components/Tasks";
+import Footer from "./components/Footer";
 
 export default {
   name: "App",
   components: {
     Header,
-    Tasks,
     AddTask,
+    Tasks,
+    Footer,
   },
   data() {
     return {
-      tasks: [],
       formHidden: true,
     };
   },
   methods: {
-    deleteTask(id) {
-      this.tasks = this.tasks.filter((t) => t.id !== id);
-    },
-    toggleReminder(id) {
-      this.tasks = this.tasks.map((t) => {
-        if (t.id === id) {
-          return {
-            ...t,
-            reminder: !t.reminder,
-          };
-        }
-        return t;
-      });
-    },
-    addTask(task) {
-      const id = Math.floor(Math.random() * 10000) + 1;
-      const newTask = { id, ...task };
-      this.tasks = [...this.tasks, newTask];
-    },
     toggleShowForm() {
       this.formHidden = !this.formHidden;
     },
-  },
-  created() {
-    this.tasks = [
-      {
-        id: 1,
-        text: "Doctors Appointments",
-        day: "March 1 at 2:30pm",
-        reminder: true,
-      },
-      {
-        id: 2,
-        text: "Meeting at School",
-        day: "March 3 at 1:30pm",
-        reminder: true,
-      },
-      {
-        id: 3,
-        text: "Food Shopping",
-        day: "March 3 at 11:00am",
-        reminder: false,
-      },
-    ];
   },
 };
 </script>

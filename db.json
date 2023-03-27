@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "text": "Learn Firebase",
+      "day": "March 24 at 2:30am",
+      "reminder": true,
+      "id": 1
+    },
+    {
+      "text": "Learn VueJS",
+      "day": "February 10 at 2:00am",
+      "reminder": true,
+      "id": 2
+    },
+    {
+      "text": "Learn Tailwind CSS",
+      "day": "March 24 at 2:30am",
+      "reminder": true,
+      "id": 3
+    }
+  ]
+}
