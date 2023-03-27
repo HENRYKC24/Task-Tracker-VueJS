@@ -1,7 +1,5 @@
 <template>
-  <div v-if="!formHidden">
-    <AddTask @add-task="addTask" />
-  </div>
+  <AddTask v-if="!formHidden" @add-task="addTask" />
   <Tasks
     @toggle-reminder="toggleReminder"
     @delete-task="deleteTask"

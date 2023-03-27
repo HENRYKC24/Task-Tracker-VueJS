@@ -15,7 +15,7 @@
     {
       "text": "Learn Tailwind CSS",
       "day": "March 24 at 2:30am",
-      "reminder": false,
+      "reminder": true,
       "id": 3
     }
   ]

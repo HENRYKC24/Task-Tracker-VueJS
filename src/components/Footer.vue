@@ -1,7 +1,7 @@
 <template>
   <footer>
     <p>Copyright &copy; 2023</p>
-    <router-link to="/home">Home</router-link> <br>
+    <router-link to="/">Home</router-link> <br>
     <router-link to="/about">About</router-link> <br>
     <router-link to="/contact">Contact</router-link> <br>
     

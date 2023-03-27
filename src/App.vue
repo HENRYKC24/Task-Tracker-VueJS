@@ -5,15 +5,7 @@
       @show-hide-form="toggleShowForm"
       title="Task tracker"
     />
-    <!-- <div v-if="!formHidden">
-      <AddTask @add-task="addTask" />
-    </div> -->
     <router-view :formHidden="formHidden"></router-view>
-    <!-- <Tasks
-      @toggle-reminder="toggleReminder"
-      @delete-task="deleteTask"
-      :tasks="tasks"
-    /> -->
     <Footer />
   </div>
 </template>
