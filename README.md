@@ -9,13 +9,8 @@ This is a task tracker application. I used this application to learn VueJS. You 
 - VueJS
 - JSON Server
 
-## Live Demo
-
-[Live Demo Link](https://henrykc24.github.io/my-portfolio/)
-
 
 ## Getting Started
-
 
 To get a local copy up and running follow these simple example steps.
 
@@ -47,10 +42,6 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 That's it! You are ready to use the `Task Tracker` application
-
-
-The app is deployed using Netlify. You can view it using the live demo link above.
-
 
 
 ## Author
